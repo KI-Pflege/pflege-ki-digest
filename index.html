@@ -7,20 +7,29 @@
 <meta name="description" content="Durchsuchbares Archiv aller Beiträge aus dem Pflege-KI-Digest: KI in der Pflege, nach Themen sortiert, mit Quelle und Link zum Original.">
 <meta property="og:title" content="Pflege-KI-Digest · Archiv">
 <meta property="og:description" content="Alle Beiträge zu KI in der Pflege, nach Themen sortiert und durchsuchbar. Jede Meldung mit Quelle.">
-<meta property="og:image" content="banner.png">
+<meta property="og:image" content="https://ki-pflege.github.io/pflege-ki-digest/banner.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20300%20300%22%3E%3Crect%20width%3D%22300%22%20height%3D%22300%22%20fill%3D%22%230F4C5C%22/%3E%3Cg%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%2212%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%3Cline%20x1%3D%22150%22%20y1%3D%22152%22%20x2%3D%2292%22%20y2%3D%2292%22/%3E%3Cline%20x1%3D%22150%22%20y1%3D%22152%22%20x2%3D%22214%22%20y2%3D%2282%22/%3E%3Cline%20x1%3D%22150%22%20y1%3D%22152%22%20x2%3D%22232%22%20y2%3D%22190%22/%3E%3Cline%20x1%3D%22150%22%20y1%3D%22152%22%20x2%3D%22118%22%20y2%3D%22226%22/%3E%3Cline%20x1%3D%22150%22%20y1%3D%22152%22%20x2%3D%2268%22%20y2%3D%22170%22/%3E%3Cline%20x1%3D%2292%22%20y1%3D%2292%22%20x2%3D%2268%22%20y2%3D%22170%22%20opacity%3D%220.45%22/%3E%3Cline%20x1%3D%22214%22%20y1%3D%2282%22%20x2%3D%22232%22%20y2%3D%22190%22%20opacity%3D%220.45%22/%3E%3Cline%20x1%3D%22118%22%20y1%3D%22226%22%20x2%3D%22232%22%20y2%3D%22190%22%20opacity%3D%220.45%22/%3E%3C/g%3E%3Cg%20fill%3D%22%230F4C5C%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%228%22%3E%3Ccircle%20cx%3D%2292%22%20cy%3D%2292%22%20r%3D%2216%22/%3E%3Ccircle%20cx%3D%22214%22%20cy%3D%2282%22%20r%3D%2219%22/%3E%3Ccircle%20cx%3D%22232%22%20cy%3D%22190%22%20r%3D%2215%22/%3E%3Ccircle%20cx%3D%22118%22%20cy%3D%22226%22%20r%3D%2218%22/%3E%3Ccircle%20cx%3D%2268%22%20cy%3D%22170%22%20r%3D%2213%22/%3E%3C/g%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%22152%22%20r%3D%2224%22%20fill%3D%22%23F2B544%22/%3E%3C/svg%3E%20">
+<link rel="alternate" type="application/rss+xml" title="Pflege-KI-Digest (RSS)" href="feed.xml">
 <style>
 :root{--petrol:#0F4C5C;--petrol-hell:#E6F0F2;--amber:#F2B544;--amber-dunkel:#9A6A00;--text:#1D2328;--grau:#5B6670;--linie:#D5DCE0;--bg:#FBFCFC;--karte:#FFFFFF}
 @media (prefers-color-scheme:dark){:root{--petrol:#7FC4D4;--petrol-hell:#16303A;--amber:#E7B24A;--amber-dunkel:#E7B24A;--text:#E3EAEC;--grau:#9AA9AF;--linie:#2C3A3F;--bg:#111A1D;--karte:#172327}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 a{color:var(--petrol)}
-header{background:#0F4C5C;color:#fff;padding:2.2rem 1rem 1.6rem}
+header{position:relative;overflow:hidden;background:linear-gradient(100deg,#0F4C5C 0%,#0F4C5C 55%,#13596B 100%);color:#fff;padding:2.2rem 1rem 1.6rem;border-bottom:5px solid #F2B544}
+header .wrap{position:relative;z-index:1}
+.netz{position:absolute;right:2%;top:0;height:100%;width:min(34%,24rem);opacity:.9}
+.marke{display:flex;align-items:center;gap:1rem}
+.logo{width:4.2rem;height:4.2rem;flex:none;border-radius:12px;box-shadow:0 0 0 1px #FFFFFF33}
+@media (max-width:40rem){.netz{opacity:.18;width:60%}.logo{width:3.2rem;height:3.2rem}}
 .wrap{max-width:60rem;margin:0 auto;padding:0 1rem}
 header .wrap{padding:0}
 .kicker{color:#F2B544;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;margin:0}
 h1{margin:.3rem 0 .4rem;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.1}
 header p{margin:0;color:#D3E4E8;max-width:42rem}
 .stand{font-size:.85rem;color:#B5CDD3;margin-top:.6rem}
+.rss{display:inline-block;margin-top:.8rem;color:#0F4C5C;background:#F2B544;font-weight:600;font-size:.9rem;text-decoration:none;padding:.35rem .8rem;border-radius:6px}
+.rss:hover{background:#fff}
 .suche{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--linie);padding:.8rem 0}
 .zeile{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
 input[type=search]{flex:1 1 18rem;min-width:0;font:inherit;padding:.6rem .8rem;border:2px solid var(--linie);border-radius:8px;background:var(--karte);color:var(--text)}
@@ -55,11 +64,12 @@ footer p{margin:.4rem 0;white-space:pre-line}
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <p class="kicker">Archiv</p>
-  <h1>Pflege-KI-Digest</h1>
+<header><svg class="netz" viewBox="235 0 285 191" preserveAspectRatio="xMaxYMid meet" aria-hidden="true" focusable="false"><g stroke="#FFFFFF" stroke-opacity=".22" stroke-width="1.5" fill="none"><line x1="407.5" y1="141.3" x2="413.5" y2="112.3"/><line x1="297.6" y1="51.4" x2="257.5" y2="87.6"/><line x1="273.5" y1="61.5" x2="257.5" y2="87.6"/><line x1="296.2" y1="95.4" x2="257.5" y2="87.6"/><line x1="363.1" y1="103.2" x2="377.0" y2="107.7"/><line x1="495.5" y1="169.3" x2="413.5" y2="112.3"/><line x1="273.5" y1="61.5" x2="289.4" y2="14.4"/><line x1="289.4" y1="14.4" x2="297.6" y2="51.4"/><line x1="481.1" y1="87.9" x2="413.5" y2="112.3"/><line x1="363.1" y1="103.2" x2="382.1" y2="21.7"/><line x1="377.0" y1="107.7" x2="382.1" y2="21.7"/><line x1="273.5" y1="61.5" x2="272.7" y2="144.0"/><line x1="407.5" y1="141.3" x2="495.5" y2="169.3"/><line x1="296.2" y1="95.4" x2="272.7" y2="144.0"/><line x1="296.2" y1="95.4" x2="297.6" y2="51.4"/><line x1="273.5" y1="61.5" x2="297.6" y2="51.4"/><line x1="377.0" y1="107.7" x2="407.5" y2="141.3"/><line x1="363.1" y1="103.2" x2="407.5" y2="141.3"/><line x1="481.1" y1="87.9" x2="495.5" y2="169.3"/><line x1="423.4" y1="18.8" x2="413.5" y2="112.3"/><line x1="272.7" y1="144.0" x2="257.5" y2="87.6"/><line x1="296.2" y1="95.4" x2="273.5" y2="61.5"/><line x1="363.1" y1="103.2" x2="413.5" y2="112.3"/><line x1="289.4" y1="14.4" x2="257.5" y2="87.6"/><line x1="377.0" y1="107.7" x2="413.5" y2="112.3"/><line x1="481.1" y1="87.9" x2="423.4" y2="18.8"/><line x1="423.4" y1="18.8" x2="382.1" y2="21.7"/><line x1="112.5" y1="94.6" x2="129.0" y2="74.7"/><line x1="129.0" y1="74.7" x2="125.0" y2="76.9"/><line x1="129.0" y1="74.7" x2="196.4" y2="81.4"/><line x1="129.0" y1="74.7" x2="229.5" y2="109.6"/><line x1="125.0" y1="76.9" x2="116.0" y2="39.3"/><line x1="112.5" y1="94.6" x2="125.0" y2="76.9"/><line x1="229.5" y1="109.6" x2="196.4" y2="81.4"/><line x1="129.0" y1="74.7" x2="116.0" y2="39.3"/></g><g fill="#0F4C5C" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="1.5"><circle cx="363.1" cy="103.2" r="4"/><circle cx="481.1" cy="87.9" r="3.5"/><circle cx="377.0" cy="107.7" r="4"/><circle cx="296.2" cy="95.4" r="3"/><circle cx="407.5" cy="141.3" r="3"/><circle cx="273.5" cy="61.5" r="3"/><circle cx="272.7" cy="144.0" r="5"/><circle cx="423.4" cy="18.8" r="3"/><circle cx="495.5" cy="169.3" r="4"/><circle cx="413.5" cy="112.3" r="5"/><circle cx="289.4" cy="14.4" r="3"/><circle cx="382.1" cy="21.7" r="3"/><circle cx="297.6" cy="51.4" r="3"/><circle cx="257.5" cy="87.6" r="3.5"/><circle cx="112.5" cy="94.6" r="3.5"/><circle cx="129.0" cy="74.7" r="3"/><circle cx="125.0" cy="76.9" r="5"/><circle cx="116.0" cy="39.3" r="5"/><circle cx="229.5" cy="109.6" r="5"/><circle cx="196.4" cy="81.4" r="5"/></g><circle cx="481.1" cy="87.9" r="5" fill="#F2B544" stroke="none"/><circle cx="413.5" cy="112.3" r="5" fill="#F2B544" stroke="none"/><circle cx="289.4" cy="14.4" r="5" fill="#F2B544" stroke="none"/></svg><div class="wrap">
+  <div class="marke"><svg class="logo" viewBox="0 0 300 300" role="img" aria-label="Logo Pflege-KI-Digest"><rect width="300" height="300" fill="#0F4C5C"/><g stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" fill="none"><line x1="150" y1="152" x2="92" y2="92"/><line x1="150" y1="152" x2="214" y2="82"/><line x1="150" y1="152" x2="232" y2="190"/><line x1="150" y1="152" x2="118" y2="226"/><line x1="150" y1="152" x2="68" y2="170"/><line x1="92" y1="92" x2="68" y2="170" opacity="0.45"/><line x1="214" y1="82" x2="232" y2="190" opacity="0.45"/><line x1="118" y1="226" x2="232" y2="190" opacity="0.45"/></g><g fill="#0F4C5C" stroke="#FFFFFF" stroke-width="8"><circle cx="92" cy="92" r="16"/><circle cx="214" cy="82" r="19"/><circle cx="232" cy="190" r="15"/><circle cx="118" cy="226" r="18"/><circle cx="68" cy="170" r="13"/></g><circle cx="150" cy="152" r="24" fill="#F2B544"/></svg> <div><p class="kicker">Archiv</p>
+  <h1>Pflege-KI-Digest</h1></div></div>
   <p>Alle bisher veröffentlichten Beiträge zu KI in der Pflege, nach Themen sortiert und durchsuchbar. Jede Meldung mit Quelle und Link zum Original.</p>
   <p class="stand" id="stand">Lade Archiv …</p>
+  <a class="rss" href="feed.xml" title="Mit Feedly, Outlook oder einem anderen Feedreader abonnieren">RSS-Feed abonnieren</a>
 </div></header>
 
 <div class="suche"><div class="wrap">
@@ -84,6 +94,7 @@ footer p{margin:.4rem 0;white-space:pre-line}
   <button class="mehr" id="mehr" hidden>Weitere anzeigen</button>
   <footer>
     <p>Die Beiträge werden automatisch gesammelt, von einem lokal laufenden Sprachmodell bewertet und kurz zusammengefasst und vor der Veröffentlichung von Hand freigegeben. Kurzfassungen können Fehler enthalten, maßgeblich sind die verlinkten Originale. Alle Rechte an den verlinkten Inhalten liegen bei den jeweiligen Urheber:innen und Verlagen.</p>
+    <p>RSS-Feed zum Abonnieren in Feedly, Outlook oder einem anderen Feedreader: <a href="feed.xml">https://ki-pflege.github.io/pflege-ki-digest/feed.xml</a></p>
     <p id="fuss"></p>
     <p id="impressum"></p>
   </footer>
