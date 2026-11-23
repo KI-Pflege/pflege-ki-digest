@@ -30,6 +30,20 @@ header p{margin:0;color:#D3E4E8;max-width:42rem}
 .stand{font-size:.85rem;color:#B5CDD3;margin-top:.6rem}
 .rss{display:inline-block;margin-top:.8rem;color:#0F4C5C;background:#F2B544;font-weight:600;font-size:.9rem;text-decoration:none;padding:.35rem .8rem;border-radius:6px}
 .rss:hover{background:#fff}
+.abo{margin-top:.8rem}
+.abo summary{list-style:none;cursor:pointer;margin-top:0}
+.abo summary::-webkit-details-marker{display:none}
+.abo summary::after{content:" ▾"}
+.abo[open] summary::after{content:" ▴"}
+.abo summary:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.abo-box{margin-top:.6rem;max-width:36rem;background:#0B3A46;border:1px solid #FFFFFF33;border-radius:8px;padding:.8rem .9rem}
+.abo-box p{margin:0 0 .5rem;color:#E6F0F2}
+.abo-zeile{display:flex;gap:.4rem;flex-wrap:wrap}
+.abo-zeile input{flex:1 1 16rem;min-width:0;font:inherit;font-size:.9rem;padding:.4rem .6rem;border:1px solid #FFFFFF55;border-radius:6px;background:#fff;color:#1D2328}
+.abo-zeile button{font:inherit;font-size:.9rem;font-weight:600;padding:.4rem .8rem;border:0;border-radius:6px;background:#F2B544;color:#0F4C5C;cursor:pointer}
+.abo-zeile button:hover{background:#fff}
+.abo-box p.abo-klein{font-size:.82rem;color:#B5CDD3;margin:.5rem 0 0}
+.abo-box p.abo-klein:empty{display:none}
 .suche{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--linie);padding:.8rem 0}
 .zeile{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
 input[type=search]{flex:1 1 18rem;min-width:0;font:inherit;padding:.6rem .8rem;border:2px solid var(--linie);border-radius:8px;background:var(--karte);color:var(--text)}
@@ -69,7 +83,18 @@ footer p{margin:.4rem 0;white-space:pre-line}
   <h1>Pflege-KI-Digest</h1></div></div>
   <p>Alle bisher veröffentlichten Beiträge zu KI in der Pflege, nach Themen sortiert und durchsuchbar. Jede Meldung mit Quelle und Link zum Original.</p>
   <p class="stand" id="stand">Lade Archiv …</p>
-  <a class="rss" href="feed.xml" title="Mit Feedly, Outlook oder einem anderen Feedreader abonnieren">RSS-Feed abonnieren</a>
+  <details class="abo">
+    <summary class="rss">RSS-Feed abonnieren</summary>
+    <div class="abo-box">
+      <p>Feed-Adresse kopieren und in Feedly oder Outlook einfügen. Neue Beiträge erscheinen dann automatisch dort.</p>
+      <div class="abo-zeile">
+        <input id="feedurl" type="text" readonly value="https://ki-pflege.github.io/pflege-ki-digest/feed.xml" aria-label="Adresse des RSS-Feeds">
+        <button type="button" id="kopieren">Adresse kopieren</button>
+      </div>
+      <p class="abo-klein" id="kopiert" role="status"></p>
+      <p class="abo-klein"><strong>Feedly:</strong> „+ Follow“ bzw. „Follow Sources“ → Adresse einfügen.<br><strong>Outlook (klassisch):</strong> Rechtsklick auf „RSS-Feeds“ → „Neuen RSS-Feed hinzufügen“ → Adresse einfügen.</p>
+    </div>
+  </details>
 </div></header>
 
 <div class="suche"><div class="wrap">
@@ -93,7 +118,7 @@ footer p{margin:.4rem 0;white-space:pre-line}
   <ol class="liste" id="liste"></ol>
   <button class="mehr" id="mehr" hidden>Weitere anzeigen</button>
   <footer>
-    <p>Die Beiträge werden automatisch gesammelt, von einem lokal laufenden Sprachmodell bewertet und kurz zusammengefasst und vor der Veröffentlichung von Hand freigegeben. Kurzfassungen können Fehler enthalten, maßgeblich sind die verlinkten Originale. Alle Rechte an den verlinkten Inhalten liegen bei den jeweiligen Urheber:innen und Verlagen.</p>
+    <p>Die Beiträge werden automatisch gesammelt und von einem lokal laufenden Sprachmodell bewertet. Die Kurzfassungen formuliert seit 23.11.2026 Claude (Anthropic), ältere stammen vom lokalen Modell. Vor der Veröffentlichung wird jeder Digest von Hand freigegeben. Kurzfassungen können Fehler enthalten, maßgeblich sind die verlinkten Originale. Alle Rechte an den verlinkten Inhalten liegen bei den jeweiligen Urheber:innen und Verlagen.</p>
     <p>RSS-Feed zum Abonnieren in Feedly, Outlook oder einem anderen Feedreader: <a href="feed.xml">https://ki-pflege.github.io/pflege-ki-digest/feed.xml</a></p>
     <p id="fuss"></p>
     <p id="impressum"></p>
@@ -183,6 +208,15 @@ footer p{margin:.4rem 0;white-space:pre-line}
   });
   var timer; $('q').addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(function () { zustand.q = $('q').value.trim(); zustand.n = SEITE; alles(); }, 150); });
   ['typ', 'region', 'zeit', 'sort'].forEach(function (k) { $(k).addEventListener('change', function () { zustand[k] = $(k).value; zustand.n = SEITE; alles(); }); });
+
+  var feedUrl = location.protocol.indexOf('http') === 0 ? new URL('feed.xml', location.href.split(/[?#]/)[0]).href : $('feedurl').value;
+  $('feedurl').value = feedUrl;
+  $('feedurl').addEventListener('focus', function () { this.select(); });
+  $('kopieren').addEventListener('click', function () {
+    function ok() { $('kopiert').textContent = 'Kopiert. Jetzt in Feedly oder Outlook einfügen.'; }
+    function manuell() { $('feedurl').focus(); $('feedurl').select(); try { if (document.execCommand('copy')) return ok(); } catch (e) {} $('kopiert').textContent = 'Bitte die markierte Adresse mit Strg+C kopieren.'; }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(feedUrl).then(ok, manuell); else manuell();
+  });
 
   fetch('archiv.json?' + Date.now()).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (daten) {
     alle = (daten.eintraege || []).map(function (e) { e.s = e.s || []; e.k = e.k || []; e._such = norm([e.t, e.z, e.q, e.s.join(' '), e.k.join(' ')].join(' ')); return e; });
